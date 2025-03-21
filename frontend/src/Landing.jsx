@@ -1,10 +1,10 @@
-
-
 import { useState, useEffect } from "react"
+import { useNavigate } from 'react-router-dom';
 
 const Landing = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,7 +62,12 @@ const Landing = () => {
           <a href="#contact" onClick={() => setIsMenuOpen(false)} className="text-amber-800 font-medium hover:text-amber-600 transition-colors">Contact</a>
         </li>
       </ul>
-      <button className="md:ml-8 px-4 py-2 bg-amber-800 text-white rounded-md hover:bg-amber-700 transition-colors font-medium my-4 md:my-0">Login</button>
+      <button 
+        onClick={() => navigate('/login')} 
+        className="md:ml-8 px-4 py-2 bg-amber-800 text-white rounded-md hover:bg-amber-700 transition-colors font-medium my-4 md:my-0"
+      >
+        Login
+      </button>
     </nav>
   </div>
       </header>
@@ -82,12 +87,12 @@ const Landing = () => {
   <div className="container relative z-10 mx-auto max-w-3xl px-6 py-12">
     {/* Heading with Heritage-inspired Typography */}
     <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight drop-shadow-lg animate-fade-in-up">
-      <span className="text-amber-400">Discover</span> India’s Timeless Heritage
+      <span className="text-amber-400">Discover</span> India's Timeless Heritage
     </h1>
 
     {/* Subheading with Smooth Animation */}
     <p className="text-xl md:text-2xl mb-10 font-light tracking-wide text-amber-100 animate-fade-in-up delay-200">
-      A digital journey through India’s cultural wonders and historical legacy
+      A digital journey through India's cultural wonders and historical legacy
     </p>
 
     {/* Button Group with Modern Effects */}
@@ -157,7 +162,7 @@ const Landing = () => {
         </div>
         <h3 className="text-xl font-semibold text-amber-900 mt-8 mb-3">Discover Heritage Sites</h3>
         <p className="text-gray-700 text-sm leading-relaxed">
-          Access detailed information, historical significance, images, and visitor guidelines for India’s treasured monuments.
+          Access detailed information, historical significance, images, and visitor guidelines for India's treasured monuments.
         </p>
       </div>
 
@@ -190,7 +195,7 @@ const Landing = () => {
         </div>
         <h3 className="text-xl font-semibold text-amber-900 mt-8 mb-3">Interactive Virtual Tours</h3>
         <p className="text-gray-700 text-sm leading-relaxed">
-          Experience immersive 360° views and guided virtual tours of India’s most iconic heritage sites.
+          Experience immersive 360° views and guided virtual tours of India's most iconic heritage sites.
         </p>
       </div>
 
@@ -212,7 +217,7 @@ const Landing = () => {
         </div>
         <h3 className="text-xl font-semibold text-amber-900 mt-8 mb-3">Preservation & Awareness</h3>
         <p className="text-gray-700 text-sm leading-relaxed">
-          Learn about conservation efforts and initiatives to protect India’s precious heritage.
+          Learn about conservation efforts and initiatives to protect India's precious heritage.
         </p>
       </div>
     </div>
