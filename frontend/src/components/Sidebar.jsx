@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { HomeIcon, SearchIcon, MapPinIcon, BookmarkIcon, ScrollIcon, UserIcon, LogOutIcon, MenuIcon, XIcon, Camera, Compass } from 'lucide-react';
 import { auth } from '../firebase';
+import { useAuth } from '../context/AuthContext';
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(true);
+  const { user } = useAuth();
   
   const navItems = [
     { id: 'home', path: '/home', title: 'Home', icon: HomeIcon, description: 'Overview of top heritage sites' },
@@ -74,13 +76,13 @@ const Sidebar = () => {
           <div className="flex items-center space-x-3">
             <div className="h-12 w-12 rounded-full bg-[#F5DEB3] border-2 border-[#D2B48C] overflow-hidden">
               <img 
-                src="/placeholder.svg" 
+                src={user?.photoURL || "/placeholder.svg"}
                 alt="User" 
                 className="h-full w-full object-cover"
               />
             </div>
             <div>
-              <p className="font-medium text-[#8B4513]">Heritage Explorer</p>
+              <p className="font-medium text-[#8B4513]">{user?.displayName}</p>
               <p className="text-xs text-[#A0522D]">Discover India's Treasures</p>
             </div>
           </div>
