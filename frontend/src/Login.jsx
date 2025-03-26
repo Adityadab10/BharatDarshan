@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { auth, googleProvider } from "./firebase";
 import { signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 
@@ -6,12 +7,13 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSignUp, setIsSignUp] = useState(false);
+  const navigate = useNavigate();
 
   // Google Sign-In
   const handleGoogleLogin = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-      alert("Google Sign-In Successful!");
+      navigate('/home');
     } catch (error) {
       console.error(error.message);
       alert("Google Sign-In Failed!");
@@ -23,10 +25,10 @@ const Login = () => {
     try {
       if (isSignUp) {
         await createUserWithEmailAndPassword(auth, email, password);
-        alert("Sign-up Successful!");
+        navigate('/home');
       } else {
         await signInWithEmailAndPassword(auth, email, password);
-        alert("Login Successful!");
+        navigate('/home');
       }
     } catch (error) {
       console.error(error.message);
