@@ -2,8 +2,7 @@ import { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom';
 
 const Landing = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,100 +18,64 @@ const Landing = () => {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
-
   return (
-    <div className="font-sans text-gray-800">
-      {/* Header */}
-      <header className={`fixed top-0 left-0 w-full z-10 py-5 transition-all duration-300 ${scrolled ? "bg-white shadow-md py-4" : "bg-transparent"}`}>
-  <div className="container mx-auto max-w-6xl px-5 flex justify-between items-center">
-    <div className="logo flex items-center">
-      <svg className="w-8 h-8 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#92400E" />
-        <path d="M2 17L12 22L22 17" stroke="#92400E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M2 12L12 17L22 12" stroke="#92400E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-      <h1 className="text-2xl font-bold text-amber-800">BharatDarshan</h1>
-    </div>
-    <div className="cursor-pointer md:hidden" onClick={toggleMenu}>
-      <div className={`w-6 h-0.5 bg-amber-800 mb-1.5 transition-all ${isMenuOpen ? "transform -rotate-45 translate-y-1.5" : ""}`}></div>
-      <div className={`w-6 h-0.5 bg-amber-800 mb-1.5 transition-all ${isMenuOpen ? "opacity-0" : ""}`}></div>
-      <div className={`w-6 h-0.5 bg-amber-800 transition-all ${isMenuOpen ? "transform rotate-45 -translate-y-1.5" : ""}`}></div>
-    </div>
-    <nav className={`md:flex md:items-center transition-all ${isMenuOpen ? "fixed top-16 left-0 w-full h-screen bg-white shadow-md" : "hidden"} md:static md:h-auto md:w-auto md:bg-transparent md:shadow-none`}>
-      <ul className={`md:flex ${isMenuOpen ? "flex flex-col p-8" : ""}`}>
-        <li className="md:ml-8 md:my-0 my-4">
-          <a href="#home" onClick={() => setIsMenuOpen(false)} className="text-amber-800 font-medium hover:text-amber-600 transition-colors">Home</a>
-        </li>
-        <li className="md:ml-8 md:my-0 my-4">
-          <a href="#discover" onClick={() => setIsMenuOpen(false)} className="text-amber-800 font-medium hover:text-amber-600 transition-colors">Discover</a>
-        </li>
-        <li className="md:ml-8 md:my-0 my-4">
-          <a href="#features" onClick={() => setIsMenuOpen(false)} className="text-amber-800 font-medium hover:text-amber-600 transition-colors">Features</a>
-        </li>
-        <li className="md:ml-8 md:my-0 my-4">
-          <a href="#tours" onClick={() => setIsMenuOpen(false)} className="text-amber-800 font-medium hover:text-amber-600 transition-colors">Virtual Tours</a>
-        </li>
-        <li className="md:ml-8 md:my-0 my-4">
-          <a href="#community" onClick={() => setIsMenuOpen(false)} className="text-amber-800 font-medium hover:text-amber-600 transition-colors">Community</a>
-        </li>
-        <li className="md:ml-8 md:my-0 my-4">
-          <a href="#contact" onClick={() => setIsMenuOpen(false)} className="text-amber-800 font-medium hover:text-amber-600 transition-colors">Contact</a>
-        </li>
-      </ul>
-      <button 
-        onClick={() => navigate('/login')} 
-        className="md:ml-8 px-4 py-2 bg-amber-800 text-white rounded-md hover:bg-amber-700 transition-colors font-medium my-4 md:my-0"
-      >
-        Login
-      </button>
-    </nav>
-  </div>
-      </header>
+    <div className="min-h-screen bg-amber-900">
+      {/* Single Navigation Bar */}
+      <nav className="bg-transparent py-4 px-6 absolute top-0 left-0 right-0 z-20">
+        <div className="container mx-auto flex items-center justify-between">
+          {/* Logo */}
+          <div className="flex items-center space-x-2">
+            <span className="text-2xl font-bold text-amber-100">BharatDarshan</span>
+          </div>
+
+          {/* Center - Fabulous India Button */}
+          <div className="flex-1 flex justify-center">
+            <button 
+              onClick={() => navigate('/transport')}
+              className="bg-gradient-to-r from-amber-500 to-amber-700 text-white px-6 py-2 rounded-full font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-amber-500/50"
+            >
+              <span className="mr-2">✨</span>
+              Fabulous India
+              <span className="ml-2">✨</span>
+            </button>
+          </div>
+
+          {/* Right - Login Button */}
+          <button 
+            onClick={() => navigate('/login')}
+            className="bg-transparent border-2 border-amber-200 text-amber-100 px-6 py-2 rounded-full hover:bg-amber-200 hover:text-amber-900 transition-colors duration-300"
+          >
+            Login
+          </button>
+        </div>
+      </nav>
 
       {/* Hero Section */}
       <section
-  id="home"
-  className="relative flex items-center justify-center min-h-screen bg-cover bg-center text-white text-center overflow-hidden"
-  style={{
-    backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/api/placeholder/1920/1080')",
-  }}
->
-  {/* Subtle Animated Overlay */}
-  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-900/20 to-black/50 animate-gradient-slow"></div>
-
-  {/* Content Container */}
-  <div className="container relative z-10 mx-auto max-w-3xl px-6 py-12">
-    {/* Heading with Heritage-inspired Typography */}
-    <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight drop-shadow-lg animate-fade-in-up">
-      <span className="text-amber-400">Discover</span> India's Timeless Heritage
-    </h1>
-
-    {/* Subheading with Smooth Animation */}
-    <p className="text-xl md:text-2xl mb-10 font-light tracking-wide text-amber-100 animate-fade-in-up delay-200">
-      A digital journey through India's cultural wonders and historical legacy
-    </p>
-
-    {/* Button Group with Modern Effects */}
-    <div className="flex flex-col md:flex-row justify-center gap-6">
-      <button className="relative bg-gradient-to-r from-amber-700 to-amber-900 hover:from-amber-800 hover:to-amber-950 text-white font-semibold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
-        Explore Now
-        <span className="absolute -top-1 -right-1 h-3 w-3 bg-amber-400 rounded-full animate-ping"></span>
-      </button>
-      <button className="bg-transparent border-2 border-amber-400 hover:bg-amber-400/20 text-amber-200 font-semibold py-4 px-8 rounded-full shadow-md transform hover:scale-105 transition-all duration-300">
-        Learn More
-      </button>
-    </div>
-  </div>
-
-  {/* Decorative Heritage Element (Optional) */}
-  <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-amber-950/50 to-transparent flex justify-center items-end">
-    <svg className="w-full max-w-4xl text-amber-700/30" viewBox="0 0 1440 100" fill="currentColor">
-      <path d="M0,0 L1440,0 L1440,60 C720,120 360,60 0,60 Z" />
-    </svg>
-  </div>
+        id="home"
+        className="relative flex items-center justify-center min-h-screen bg-cover bg-center text-white text-center overflow-hidden"
+        style={{
+          backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/api/placeholder/1920/1080')",
+        }}
+      >
+        {/* Content Container */}
+        <div className="container relative z-10 mx-auto max-w-3xl px-6 py-12">
+          <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight drop-shadow-lg animate-fade-in-up">
+            <span className="text-amber-400">Discover</span> India's Timeless Heritage
+          </h1>
+          <p className="text-xl md:text-2xl mb-10 font-light tracking-wide text-amber-100 animate-fade-in-up delay-200">
+            A digital journey through India's cultural wonders and historical legacy
+          </p>
+          <div className="flex flex-col md:flex-row justify-center gap-6">
+            <button className="relative bg-gradient-to-r from-amber-700 to-amber-900 hover:from-amber-800 hover:to-amber-950 text-white font-semibold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
+              Explore Now
+              <span className="absolute -top-1 -right-1 h-3 w-3 bg-amber-400 rounded-full animate-ping"></span>
+            </button>
+            <button className="bg-transparent border-2 border-amber-400 hover:bg-amber-400/20 text-amber-200 font-semibold py-4 px-8 rounded-full shadow-md transform hover:scale-105 transition-all duration-300">
+              Learn More
+            </button>
+          </div>
+        </div>
       </section>
 
       {/* About Section */}
@@ -133,179 +96,179 @@ const Landing = () => {
 
       {/* Features Section */}
       <section
-  id="features"
-  className="py-24 bg-gradient-to-b from-amber-50 to-white relative overflow-hidden"
->
-  {/* Subtle Decorative Background */}
-  <div className="absolute inset-0 opacity-10 pointer-events-none">
-    <svg className="w-full h-full" viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 300C400 200 800 400 1440 300" stroke="#D97706" strokeWidth="2" strokeDasharray="10 10" />
-      <path d="M0 400C400 300 800 500 1440 400" stroke="#D97706" strokeWidth="2" strokeDasharray="10 10" />
-    </svg>
-  </div>
-
-  <div className="container mx-auto max-w-6xl px-6 relative z-10">
-    {/* Section Heading */}
-    <div className="text-center mb-16">
-      <h2 className="text-4xl md:text-5xl font-bold text-amber-900 mb-6 tracking-tight animate-fade-in">
-        What We Offer
-      </h2>
-      <div className="h-1 w-20 bg-gradient-to-r from-amber-600 to-amber-900 mx-auto rounded-full"></div>
-    </div>
-
-    {/* Features Grid */}
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-      {/* Feature Card 1 */}
-      <div className="relative bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-3 group">
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center shadow-md group-hover:bg-amber-200 transition-colors">
-          <span className="text-3xl text-amber-800">🏛️</span>
+        id="features"
+        className="py-24 bg-gradient-to-b from-amber-50 to-white relative overflow-hidden"
+      >
+        {/* Subtle Decorative Background */}
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
+          <svg className="w-full h-full" viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 300C400 200 800 400 1440 300" stroke="#D97706" strokeWidth="2" strokeDasharray="10 10" />
+            <path d="M0 400C400 300 800 500 1440 400" stroke="#D97706" strokeWidth="2" strokeDasharray="10 10" />
+          </svg>
         </div>
-        <h3 className="text-xl font-semibold text-amber-900 mt-8 mb-3">Discover Heritage Sites</h3>
-        <p className="text-gray-700 text-sm leading-relaxed">
-          Access detailed information, historical significance, images, and visitor guidelines for India's treasured monuments.
-        </p>
-      </div>
 
-      {/* Feature Card 2 */}
-      <div className="relative bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-3 group">
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center shadow-md group-hover:bg-amber-200 transition-colors">
-          <span className="text-3xl text-amber-800">🧭</span>
-        </div>
-        <h3 className="text-xl font-semibold text-amber-900 mt-8 mb-3">Smart Navigation</h3>
-        <p className="text-gray-700 text-sm leading-relaxed">
-          Get real-time directions, best travel routes, and estimated travel time using Google Maps integration.
-        </p>
-      </div>
+        <div className="container mx-auto max-w-6xl px-6 relative z-10">
+          {/* Section Heading */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-amber-900 mb-6 tracking-tight animate-fade-in">
+              What We Offer
+            </h2>
+            <div className="h-1 w-20 bg-gradient-to-r from-amber-600 to-amber-900 mx-auto rounded-full"></div>
+          </div>
 
-      {/* Feature Card 3 */}
-      <div className="relative bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-3 group">
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center shadow-md group-hover:bg-amber-200 transition-colors">
-          <span className="text-3xl text-amber-800">🏨</span>
-        </div>
-        <h3 className="text-xl font-semibold text-amber-900 mt-8 mb-3">Nearby Attractions</h3>
-        <p className="text-gray-700 text-sm leading-relaxed">
-          Explore accommodations, restaurants, and nearby tourist spots for a complete travel experience.
-        </p>
-      </div>
+          {/* Features Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {/* Feature Card 1 */}
+            <div className="relative bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-3 group">
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center shadow-md group-hover:bg-amber-200 transition-colors">
+                <span className="text-3xl text-amber-800">🏛️</span>
+              </div>
+              <h3 className="text-xl font-semibold text-amber-900 mt-8 mb-3">Discover Heritage Sites</h3>
+              <p className="text-gray-700 text-sm leading-relaxed">
+                Access detailed information, historical significance, images, and visitor guidelines for India's treasured monuments.
+              </p>
+            </div>
 
-      {/* Feature Card 4 */}
-      <div className="relative bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-3 group">
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center shadow-md group-hover:bg-amber-200 transition-colors">
-          <span className="text-3xl text-amber-800">🔍</span>
-        </div>
-        <h3 className="text-xl font-semibold text-amber-900 mt-8 mb-3">Interactive Virtual Tours</h3>
-        <p className="text-gray-700 text-sm leading-relaxed">
-          Experience immersive 360° views and guided virtual tours of India's most iconic heritage sites.
-        </p>
-      </div>
+            {/* Feature Card 2 */}
+            <div className="relative bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-3 group">
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center shadow-md group-hover:bg-amber-200 transition-colors">
+                <span className="text-3xl text-amber-800">🧭</span>
+              </div>
+              <h3 className="text-xl font-semibold text-amber-900 mt-8 mb-3">Smart Navigation</h3>
+              <p className="text-gray-700 text-sm leading-relaxed">
+                Get real-time directions, best travel routes, and estimated travel time using Google Maps integration.
+              </p>
+            </div>
 
-      {/* Feature Card 5 */}
-      <div className="relative bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-3 group">
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center shadow-md group-hover:bg-amber-200 transition-colors">
-          <span className="text-3xl text-amber-800">👥</span>
-        </div>
-        <h3 className="text-xl font-semibold text-amber-900 mt-8 mb-3">Community Contributions</h3>
-        <p className="text-gray-700 text-sm leading-relaxed">
-          Share experiences, reviews, and upload pictures of heritage sites with fellow travelers.
-        </p>
-      </div>
+            {/* Feature Card 3 */}
+            <div className="relative bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-3 group">
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center shadow-md group-hover:bg-amber-200 transition-colors">
+                <span className="text-3xl text-amber-800">🏨</span>
+              </div>
+              <h3 className="text-xl font-semibold text-amber-900 mt-8 mb-3">Nearby Attractions</h3>
+              <p className="text-gray-700 text-sm leading-relaxed">
+                Explore accommodations, restaurants, and nearby tourist spots for a complete travel experience.
+              </p>
+            </div>
 
-      {/* Feature Card 6 */}
-      <div className="relative bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-3 group">
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center shadow-md group-hover:bg-amber-200 transition-colors">
-          <span className="text-3xl text-amber-800">🌱</span>
+            {/* Feature Card 4 */}
+            <div className="relative bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-3 group">
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center shadow-md group-hover:bg-amber-200 transition-colors">
+                <span className="text-3xl text-amber-800">🔍</span>
+              </div>
+              <h3 className="text-xl font-semibold text-amber-900 mt-8 mb-3">Interactive Virtual Tours</h3>
+              <p className="text-gray-700 text-sm leading-relaxed">
+                Experience immersive 360° views and guided virtual tours of India's most iconic heritage sites.
+              </p>
+            </div>
+
+            {/* Feature Card 5 */}
+            <div className="relative bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-3 group">
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center shadow-md group-hover:bg-amber-200 transition-colors">
+                <span className="text-3xl text-amber-800">👥</span>
+              </div>
+              <h3 className="text-xl font-semibold text-amber-900 mt-8 mb-3">Community Contributions</h3>
+              <p className="text-gray-700 text-sm leading-relaxed">
+                Share experiences, reviews, and upload pictures of heritage sites with fellow travelers.
+              </p>
+            </div>
+
+            {/* Feature Card 6 */}
+            <div className="relative bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-3 group">
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center shadow-md group-hover:bg-amber-200 transition-colors">
+                <span className="text-3xl text-amber-800">🌱</span>
+              </div>
+              <h3 className="text-xl font-semibold text-amber-900 mt-8 mb-3">Preservation & Awareness</h3>
+              <p className="text-gray-700 text-sm leading-relaxed">
+                Learn about conservation efforts and initiatives to protect India's precious heritage.
+              </p>
+            </div>
+          </div>
         </div>
-        <h3 className="text-xl font-semibold text-amber-900 mt-8 mb-3">Preservation & Awareness</h3>
-        <p className="text-gray-700 text-sm leading-relaxed">
-          Learn about conservation efforts and initiatives to protect India's precious heritage.
-        </p>
-      </div>
-    </div>
-  </div>
       </section>
 
       {/* Discover Section */}
       <section id="discover" className="py-24 bg-gradient-to-b from-amber-50 to-amber-100 relative overflow-hidden">
-  <div className="container mx-auto max-w-6xl px-6">
-    {/* Section Heading */}
-    <div className="text-center mb-16">
-      <h2 className="text-4xl md:text-5xl font-bold text-amber-900 mb-6 tracking-tight animate-fade-in">
-        Discover Heritage Sites
-      </h2>
-      <div className="h-1 w-20 bg-gradient-to-r from-amber-600 to-amber-900 mx-auto rounded-full"></div>
-    </div>
+        <div className="container mx-auto max-w-6xl px-6">
+          {/* Section Heading */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-amber-900 mb-6 tracking-tight animate-fade-in">
+              Discover Heritage Sites
+            </h2>
+            <div className="h-1 w-20 bg-gradient-to-r from-amber-600 to-amber-900 mx-auto rounded-full"></div>
+          </div>
 
-    {/* Heritage Sites Grid */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-      {/* Taj Mahal */}
-      <div className="relative bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 transform hover:-translate-y-3">
-        <div
-          className="h-48 bg-cover bg-center"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')" }}
-        ></div>
-        <div className="p-6 text-center">
-          <h3 className="text-xl font-semibold text-amber-900 mb-2">Taj Mahal</h3>
-          <p className="text-gray-700 mb-4">Agra, Uttar Pradesh</p>
-          <button className="border-2 border-amber-800 text-amber-800 hover:bg-amber-800 hover:text-white font-semibold py-2 px-4 rounded-full transition-all duration-300 transform hover:scale-105">
-            Explore
-          </button>
+          {/* Heritage Sites Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            {/* Taj Mahal */}
+            <div className="relative bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 transform hover:-translate-y-3">
+              <div
+                className="h-48 bg-cover bg-center"
+                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')" }}
+              ></div>
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-semibold text-amber-900 mb-2">Taj Mahal</h3>
+                <p className="text-gray-700 mb-4">Agra, Uttar Pradesh</p>
+                <button className="border-2 border-amber-800 text-amber-800 hover:bg-amber-800 hover:text-white font-semibold py-2 px-4 rounded-full transition-all duration-300 transform hover:scale-105">
+                  Explore
+                </button>
+              </div>
+            </div>
+
+            {/* Qutub Minar */}
+            <div className="relative bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 transform hover:-translate-y-3">
+              <div
+                className="h-48 bg-cover bg-center"
+                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1629198726015-85b1b648c5b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')" }}
+              ></div>
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-semibold text-amber-900 mb-2">Qutub Minar</h3>
+                <p className="text-gray-700 mb-4">Delhi</p>
+                <button className="border-2 border-amber-800 text-amber-800 hover:bg-amber-800 hover:text-white font-semibold py-2 px-4 rounded-full transition-all duration-300 transform hover:scale-105">
+                  Explore
+                </button>
+              </div>
+            </div>
+
+            {/* Hampi */}
+            <div className="relative bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 transform hover:-translate-y-3">
+              <div
+                className="h-48 bg-cover bg-center"
+                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1597071051418-460c04f53e11?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')" }}
+              ></div>
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-semibold text-amber-900 mb-2">Hampi</h3>
+                <p className="text-gray-700 mb-4">Karnataka</p>
+                <button className="border-2 border-amber-800 text-amber-800 hover:bg-amber-800 hover:text-white font-semibold py-2 px-4 rounded-full transition-all duration-300 transform hover:scale-105">
+                  Explore
+                </button>
+              </div>
+            </div>
+
+            {/* Khajuraho Temples */}
+            <div className="relative bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 transform hover:-translate-y-3">
+              <div
+                className="h-48 bg-cover bg-center"
+                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1603991431979-82c9b33c6e6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')" }}
+              ></div>
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-semibold text-amber-900 mb-2">Khajuraho Temples</h3>
+                <p className="text-gray-700 mb-4">Madhya Pradesh</p>
+                <button className="border-2 border-amber-800 text-amber-800 hover:bg-amber-800 hover:text-white font-semibold py-2 px-4 rounded-full transition-all duration-300 transform hover:scale-105">
+                  Explore
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* View More Sites Button */}
+          <div className="text-center mt-16">
+            <button className="bg-gradient-to-r from-amber-700 to-amber-900 hover:from-amber-800 hover:to-amber-950 text-white font-semibold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
+              View More Sites
+            </button>
+          </div>
         </div>
-      </div>
-
-      {/* Qutub Minar */}
-      <div className="relative bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 transform hover:-translate-y-3">
-        <div
-          className="h-48 bg-cover bg-center"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1629198726015-85b1b648c5b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')" }}
-        ></div>
-        <div className="p-6 text-center">
-          <h3 className="text-xl font-semibold text-amber-900 mb-2">Qutub Minar</h3>
-          <p className="text-gray-700 mb-4">Delhi</p>
-          <button className="border-2 border-amber-800 text-amber-800 hover:bg-amber-800 hover:text-white font-semibold py-2 px-4 rounded-full transition-all duration-300 transform hover:scale-105">
-            Explore
-          </button>
-        </div>
-      </div>
-
-      {/* Hampi */}
-      <div className="relative bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 transform hover:-translate-y-3">
-        <div
-          className="h-48 bg-cover bg-center"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1597071051418-460c04f53e11?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')" }}
-        ></div>
-        <div className="p-6 text-center">
-          <h3 className="text-xl font-semibold text-amber-900 mb-2">Hampi</h3>
-          <p className="text-gray-700 mb-4">Karnataka</p>
-          <button className="border-2 border-amber-800 text-amber-800 hover:bg-amber-800 hover:text-white font-semibold py-2 px-4 rounded-full transition-all duration-300 transform hover:scale-105">
-            Explore
-          </button>
-        </div>
-      </div>
-
-      {/* Khajuraho Temples */}
-      <div className="relative bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 transform hover:-translate-y-3">
-        <div
-          className="h-48 bg-cover bg-center"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1603991431979-82c9b33c6e6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')" }}
-        ></div>
-        <div className="p-6 text-center">
-          <h3 className="text-xl font-semibold text-amber-900 mb-2">Khajuraho Temples</h3>
-          <p className="text-gray-700 mb-4">Madhya Pradesh</p>
-          <button className="border-2 border-amber-800 text-amber-800 hover:bg-amber-800 hover:text-white font-semibold py-2 px-4 rounded-full transition-all duration-300 transform hover:scale-105">
-            Explore
-          </button>
-        </div>
-      </div>
-    </div>
-
-    {/* View More Sites Button */}
-    <div className="text-center mt-16">
-      <button className="bg-gradient-to-r from-amber-700 to-amber-900 hover:from-amber-800 hover:to-amber-950 text-white font-semibold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
-        View More Sites
-      </button>
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* Virtual Tours Section */}
       <section id="tours" className="py-20">
@@ -392,8 +355,6 @@ const Landing = () => {
           </div>
         </div>
       </section>
-
-      
 
       {/* Footer */}
       <footer id="contact" className="bg-amber-900 text-amber-50 pt-16 pb-6">

@@ -12,6 +12,7 @@ import SavedPlaces from './components/SavedPlaces'
 import CulturalInsights from './components/CulturalInsights'
 import { AuthProvider } from './context/AuthContext'
 import { Toaster } from 'react-hot-toast'
+import Transport from './components/Transport'
 
 function App() {
   return (
@@ -61,6 +62,7 @@ function App() {
                 </main>
               </div>
             } />
+            <Route path="/transport" element={<Transport />} />
           </Routes>
         </Router>
       </AuthProvider>
