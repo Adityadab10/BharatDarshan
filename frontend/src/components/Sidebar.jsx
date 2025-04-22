@@ -16,7 +16,6 @@ const Sidebar = () => {
     { id: 'plan', path: '/plan', title: 'Plan Your Trip', icon: MapPinIcon, description: 'Travel routes & How to Reach' },
     { id: 'saved', path: '/saved', title: 'Saved Places', icon: BookmarkIcon, description: 'Bookmark favorite heritage locations' },
     { id: 'insights', path: '/insights', title: 'Cultural Insights', icon: ScrollIcon, description: 'Learn about history & traditions' },
-    { id: 'profile', path: '/profile', title: 'Profile', icon: UserIcon, description: 'Manage your account' },
   ];
 
   const toggleSidebar = () => {
